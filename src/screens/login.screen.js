@@ -8,20 +8,25 @@ import {
   TouchableOpacity,
   ToastAndroid,
   ActivityIndicator,
+  Keyboard,
 } from 'react-native';
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
-import {REGISTER_SUCCESS} from '../redux/user.action.type';
+import {LOGIN_SUCCESS} from '../redux/action.type';
+import { loginSuccess } from "../redux/user.actions";
 
 export default function LoginScreen(props) {
   const dispatch = useDispatch();
   const {navigation} = props;
   const [email, setEmail] = useState('');
+  const [loading, setLoading] = useState(false);
   const [password, setPassword] = useState('');
 
   const isEnabledSubmit = email.length >= 4 && password.length >= 5;
 
   const _onLogin = () => {
+    setLoading(true);
+    Keyboard.dismiss
     if (!email.trim()) {
       alert('Please enter email address');
       return;
@@ -33,8 +38,12 @@ export default function LoginScreen(props) {
         `Email: ${email} Password: ${password}`,
         ToastAndroid.SHORT,
       );
-      dispatch({type: REGISTER_SUCCESS, payload: {user: 'Welcome to the first demo of redux user'}});
-      return navigation.navigate('Home');
+
+      dispatch(loginSuccess({name: 'User Redux', age: 25, address: 'Pakistan'}));
+      setTimeout(() => {
+        setLoading(false)
+        return navigation.navigate('Home');
+      },500);
     }
   };
 
@@ -57,18 +66,18 @@ export default function LoginScreen(props) {
           secureTextEntry
         />
       </View>
-      {/* {isEnabledSubmit ? (
-        <ActivityIndicator size="small" color="#44bcd8" />
-      ) : ( */}
-      <TouchableOpacity
-        activeOpacity={0.7}
-        style={styles.login_view}
-        onPress={() => {
-          _onLogin();
-        }}>
-        <Text style={styles.login_button}>Login</Text>
-      </TouchableOpacity>
-      {/* )} */}
+      {loading ? (
+        <ActivityIndicator size="large" color="#44bcd8" />
+      ) : (
+        <TouchableOpacity
+          activeOpacity={0.7}
+          style={styles.login_view}
+          onPress={() => {
+            _onLogin()
+          }}>
+          <Text style={styles.login_button}>Login</Text>
+        </TouchableOpacity>
+      )}
     </SafeAreaView>
   );
 }

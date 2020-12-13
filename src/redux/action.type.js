@@ -1,0 +1,16 @@
+export const REGISTER_PENDING = "REGISTER_SUCCESS";
+export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
+export const REGISTER_FAIL = "REGISTER_FAIL";
+
+export const LOGIN_PENDING = "REGISTER_SUCCESS";
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGIN_FAIL = "LOGIN_FAIL";
+export const LOGOUT = "LOGOUT";
+
+export const FETCH_ARTICLE_DETAILS = "FETCH_ARTICLE_DETAILS";
+export const SET_ARTICLE_DETAILS = "SET_ARTICLE_DETAILS";
+
+export const API = "API";
+export const API_PENDING = "SERVICE_PENDING"
+export const  API_SUCCESS = 'SERVICE_SUCCESS'
+export const  API_ERROR = 'SERVICE_ERROR'

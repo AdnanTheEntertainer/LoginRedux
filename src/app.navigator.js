@@ -10,7 +10,11 @@ function AppNavigator() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Login">
         <Stack.Screen name="LoginScreen" component={LoginScreen}></Stack.Screen>
-        <Stack.Screen name="Home" component={HomeScreen}></Stack.Screen>
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+         />
+          
       </Stack.Navigator>
     </NavigationContainer>
   );
